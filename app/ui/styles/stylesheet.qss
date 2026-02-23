@@ -1,0 +1,93 @@
+/* app/ui/styles/stylesheet.qss */
+/* Main application stylesheet for SCO LIVE */
+
+/* Main Window */
+QMainWindow {
+    background-color: #f0f0f0;
+}
+
+/* Central Widget */
+QWidget {
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+/* Labels */
+QLabel {
+    color: #333333;
+    font-family: Arial, sans-serif;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: #0056b3;
+}
+
+QPushButton:pressed {
+    background-color: #003d82;
+}
+
+QPushButton:disabled {
+    background-color: #cccccc;
+    color: #999999;
+}
+
+/* Status Bar */
+QStatusBar {
+    background-color: #e9ecef;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Frames - for status indicators */
+QFrame {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+/* Court Control Widget */
+QWidget#courtWidget {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Status indicator colors (set via stylesheet in code) */
+.status-indicator-connected {
+    background-color: #28a745;
+    border-radius: 10px;
+}
+
+.status-indicator-disconnected {
+    background-color: #dc3545;
+    border-radius: 10px;
+}
+
+/* Fonts */
+QLabel#title {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #333333;
+}
+
+QLabel#courtName {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #333333;
+}
+
+QLabel#statusLabel {
+    font-size: 12pt;
+    color: #666666;
+}
