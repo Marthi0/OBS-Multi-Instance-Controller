@@ -79,9 +79,9 @@ To build standalone executables using PyInstaller:
 pip install pyinstaller>=6.0.0
 
 # Build for your platform
-python build/build_windows.py --version 0.1.0   # Windows
-python build/build_macos.py --version 0.1.0     # macOS
-python build/build_linux.py --version 0.1.0     # Linux
+python scripts/build_windows.py --version 0.1.0   # Windows
+python scripts/build_macos.py --version 0.1.0     # macOS
+python scripts/build_linux.py --version 0.1.0     # Linux
 ```
 
 For detailed build instructions, see [BUILD.md](BUILD.md).

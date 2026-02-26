@@ -21,15 +21,15 @@ jobs:
         include:
           - os: windows-latest
             python-version: '3.11'
-            script: build/build_windows.py
+            script: scripts/build_windows.py
 
           - os: macos-latest
             python-version: '3.11'
-            script: build/build_macos.py
+            script: scripts/build_macos.py
 
           - os: ubuntu-latest
             python-version: '3.11'
-            script: build/build_linux.py
+            script: scripts/build_linux.py
 
     steps:
       - name: Checkout code

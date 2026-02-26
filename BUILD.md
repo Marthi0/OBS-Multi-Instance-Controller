@@ -22,9 +22,9 @@ To build locally on your platform:
 pip install pyinstaller>=6.0.0
 
 # Build
-python build/build_windows.py --version 0.1.0 --output dist/   # Windows
-python build/build_macos.py --version 0.1.0 --output dist/     # macOS
-python build/build_linux.py --version 0.1.0 --output dist/     # Linux
+python scripts/build_windows.py --version 0.1.0 --output dist/   # Windows
+python scripts/build_macos.py --version 0.1.0 --output dist/     # macOS
+python scripts/build_linux.py --version 0.1.0 --output dist/     # Linux
 ```
 
 ## Detailed Setup
@@ -76,7 +76,7 @@ sudo dnf install python3-devel qt6-qtbase-devel
 ### Windows Build
 
 ```bash
-python build/build_windows.py --version 0.1.0 --output dist/
+python scripts/build_windows.py --version 0.1.0 --output dist/
 ```
 
 **Output:** `dist/obs-multi-instance-controller-0.1.0-windows-x86_64.exe`
@@ -95,7 +95,7 @@ dist/obs-multi-instance-controller-0.1.0-windows-x86_64.exe
 ### macOS Build
 
 ```bash
-python build/build_macos.py --version 0.1.0 --output dist/
+python scripts/build_macos.py --version 0.1.0 --output dist/
 ```
 
 **Output:** `dist/obs-multi-instance-controller-0.1.0-macos-{x86_64|arm64}.zip`
@@ -127,7 +127,7 @@ This is expected for unsigned builds. Click "Open" anyway or allow in Security s
 ### Linux Build
 
 ```bash
-python build/build_linux.py --version 0.1.0 --output dist/
+python scripts/build_linux.py --version 0.1.0 --output dist/
 ```
 
 **Output:** `dist/obs-multi-instance-controller-0.1.0-linux-x86_64.tar.gz`
@@ -239,7 +239,7 @@ git push origin v0.1.0
 git --version
 
 # For manual builds, specify version explicitly
-python build/build_windows.py --version 0.1.0
+python scripts/build_windows.py --version 0.1.0
 ```
 
 ## Configuration File
@@ -279,7 +279,7 @@ Location depends on where binary is run from:
 
 ### Modify PyInstaller Options
 
-Edit `build/pyinstaller.spec`:
+Edit `scripts/pyinstaller.spec`:
 ```python
 # Add hidden imports
 hiddenimports=[
@@ -305,12 +305,12 @@ app = BUNDLE(
 ### Custom Version String
 
 ```bash
-python build/build_windows.py --version my-custom-version
+python scripts/build_windows.py --version my-custom-version
 ```
 
 ### Output Customization
 
-Modify `build/build.py` `get_artifact_name()` to change naming scheme.
+Modify `scripts/build.py` `get_artifact_name()` to change naming scheme.
 
 ## Version Management
 
@@ -339,7 +339,7 @@ The GitHub Actions workflow can be extended:
 
 ## Next Steps
 
-1. **Test build locally:** `python build/build_windows.py --version 0.1.0`
+1. **Test build locally:** `python scripts/build_windows.py --version 0.1.0`
 2. **Create version tag:** `git tag v0.1.0`
 3. **Push tag:** `git push origin v0.1.0`
 4. **Monitor workflow:** Check GitHub Actions tab
