@@ -15,6 +15,21 @@ OBS Multi Instance Controller is a desktop application that provides centralized
 - **Auto-restart on crash** - Watchdog monitoring with automatic recovery
 - **Unified recording/streaming control** - Control all courts from a single interface
 
+## Downloads
+
+Get pre-built binaries for your platform:
+
+| Platform | Download |
+|----------|----------|
+| **Windows x86-64** | [obs-multi-instance-controller-0.1.0-windows-x86_64.exe](https://github.com/Marthi0/OBS-Multi-Instance-Controller/releases/download/v0.1.0/obs-multi-instance-controller-0.1.0-windows-x86_64.exe) |
+| **macOS x86-64** | [obs-multi-instance-controller-0.1.0-macos-x86_64.zip](https://github.com/Marthi0/OBS-Multi-Instance-Controller/releases/download/v0.1.0/obs-multi-instance-controller-0.1.0-macos-x86_64.zip) |
+| **macOS ARM64** | [obs-multi-instance-controller-0.1.0-macos-arm64.zip](https://github.com/Marthi0/OBS-Multi-Instance-Controller/releases/download/v0.1.0/obs-multi-instance-controller-0.1.0-macos-arm64.zip) |
+| **Linux x86-64** | [obs-multi-instance-controller-0.1.0-linux-x86_64.tar.gz](https://github.com/Marthi0/OBS-Multi-Instance-Controller/releases/download/v0.1.0/obs-multi-instance-controller-0.1.0-linux-x86_64.tar.gz) |
+
+Or [view all releases](https://github.com/Marthi0/OBS-Multi-Instance-Controller/releases).
+
+**Installation:** Simply download the binary for your platform, create a `config.json` file (see Configuration below), and run!
+
 ## Features
 
 ✨ **v0.1.0 - Initial Release**
@@ -38,8 +53,8 @@ OBS Multi Instance Controller is a desktop application that provides centralized
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/sco-live.git
-cd sco-live
+git https://github.com/Marthi0/OBS-Multi-Instance-Controller.git
+cd obs-multi-instance-controller
 ```
 
 ### 2. Create virtual environment
@@ -53,6 +68,28 @@ python -m venv .venv
 
 ```bash
 pip install -r requirements.txt
+```
+
+## Building from Source
+
+To build standalone executables using PyInstaller:
+
+```bash
+# Install build dependencies
+pip install pyinstaller>=6.0.0
+
+# Build for your platform
+python build/build_windows.py --version 0.1.0   # Windows
+python build/build_macos.py --version 0.1.0     # macOS
+python build/build_linux.py --version 0.1.0     # Linux
+```
+
+For detailed build instructions, see [BUILD.md](BUILD.md).
+
+**Automated Builds:** Push a version tag to auto-build for all platforms:
+```bash
+git tag v0.1.0
+git push origin v0.1.0
 ```
 
 ## Configuration
@@ -131,7 +168,7 @@ obs64.exe --profile <profile_name> --multi --websocket_port <port> --websocket_p
 ## Project Structure
 
 ```
-sco-live/
+obs-multi-instance-controller/
 ├── app/
 │   ├── config/           # Configuration loading and models
 │   ├── obs/              # OBS WebSocket communication

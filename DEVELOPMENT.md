@@ -5,8 +5,8 @@
 ### 1. Clone and setup
 
 ```bash
-git clone https://github.com/yourusername/sco-live.git
-cd sco-live
+git clone https://github.com/Marthi0/OBS-Multi-Instance-Controller.git
+cd obs-multi-instance-controller
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
