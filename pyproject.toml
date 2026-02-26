@@ -5,13 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "sco-live"
 version = "0.1.0"
-description = "SCO LIVE - Live streaming control for squash courts"
+description = "OBS Multi Instance Controller - Live streaming control for parallel streams"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
-    {name = "Squash Court Operations"}
+    {name = "OBS Multi Instance Controller"}
 ]
-keywords = ["obs", "squash", "streaming", "recording"]
+keywords = ["obs", "streaming", "recording"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: X11 Applications :: Qt",

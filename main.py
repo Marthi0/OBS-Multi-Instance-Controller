@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""SCO Live - Main Entry Point."""
+"""OBS Multi Instance Controller - Main Entry Point."""
 import sys
 import logging
 from pathlib import Path
@@ -18,7 +18,7 @@ def main():
     setup_logging(log_dir="logs", log_level=logging.INFO)
 
     logger.info("=" * 60)
-    logger.info("SCO Live Starting")
+    logger.info("OBS Multi Instance Controller Starting")
     logger.info("=" * 60)
 
     # Load configuration

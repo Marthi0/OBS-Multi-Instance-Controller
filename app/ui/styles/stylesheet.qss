@@ -1,5 +1,5 @@
 /* app/ui/styles/stylesheet.qss */
-/* Main application stylesheet for SCO LIVE */
+/* Main application stylesheet for OBS Multi Instance Controller */
 
 /* Main Window */
 QMainWindow {

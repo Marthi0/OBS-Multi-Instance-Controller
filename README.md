@@ -1,14 +1,14 @@
-# SCO Live v0.1.0
+# OBS Multi Instance Controller v0.1.0
 
-**SCO LIVE** - Automatically manage and control multiple OBS Studio instances for live squash court streaming.
+**OBS Multi Instance Controller** - Automatically manage and control multiple OBS Studio instances for parallel live streaming.
 
 ![Python 3.14+](https://img.shields.io/badge/Python-3.14+-blue)
 ![PySide6](https://img.shields.io/badge/PySide6-6.8+-green)
-![OBS Studio 32.x](https://img.shields.io/badge/OBS_Studio-32.x-orange)
+![OBS Studio 29.0.2+](https://img.shields.io/badge/OBS_Studio-29.0.2+-orange)
 
 ## Overview
 
-SCO Live is a desktop application that provides centralized control for multiple OBS Studio instances running simultaneously on Windows. It's designed for live streaming squash courts where you need:
+OBS Multi Instance Controller is a desktop application that provides centralized control for multiple OBS Studio instances running simultaneously on Windows, macOS or Linux. It's designed for live streaming where you need:
 
 - **Multi-instance OBS management** - Launch and control multiple OBS instances without conflicts
 - **Automatic WebSocket configuration** - OBS instances are configured with WebSocket automatically on startup
@@ -302,4 +302,4 @@ Built with:
 
 ---
 
-**SCO Live v0.1.0** - Making squash court streaming simple and reliable.
+**OBS Multi Instance Controller v0.1.0** - Making multi instance streaming simple and reliable.

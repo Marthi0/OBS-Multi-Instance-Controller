@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
         main_layout.setContentsMargins(20, 20, 20, 20)
 
         # Title
-        title_label = QLabel("OBS Squash Court Control System")
+        title_label = QLabel("OBS Multi Instance Controller")
         title_font = QFont()
         title_font.setPointSize(16)
         title_font.setBold(True)

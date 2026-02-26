@@ -1,3 +1,3 @@
 # app/__init__.py
-"""SCO LIVE Application."""
+"""OBS Multi Instance Controller Application."""
 __version__ = "1.0.0"
