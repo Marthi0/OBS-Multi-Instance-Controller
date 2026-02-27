@@ -65,7 +65,7 @@ def build_linux(version: str, output_dir: Path) -> Path:
         archive_format="tar.gz",
     )
 
-    print(f"\n✓ Build complete: {archive_path.name}")
+    print(f"\n[OK] Build complete: {archive_path.name}")
     print(f"  Size: {archive_path.stat().st_size / 1024 / 1024:.1f} MB")
 
     return archive_path
@@ -97,7 +97,7 @@ def main():
     try:
         build_linux(args.version, args.output)
     except Exception as e:
-        print(f"\n✗ Build failed: {e}", file=sys.stderr)
+        print(f"\n[ERROR] Build failed: {e}", file=sys.stderr)
         return 1
 
     return 0

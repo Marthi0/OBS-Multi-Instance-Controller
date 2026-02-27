@@ -121,9 +121,9 @@ jobs:
       - name: Build Status
         run: |
           if [ "${{ needs.build.result }}" = "success" ]; then
-            echo "✓ All builds completed successfully!"
+            echo "[OK] All builds completed successfully!"
             exit 0
           else
-            echo "✗ One or more builds failed"
+            echo "[ERROR] One or more builds failed"
             exit 1
           fi

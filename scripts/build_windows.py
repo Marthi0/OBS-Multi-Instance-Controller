@@ -55,7 +55,7 @@ def build_windows(version: str, output_dir: Path) -> Path:
 
     exe_path.rename(final_path)
 
-    print(f"\n✓ Build complete: {final_path.name}")
+    print(f"\n[OK] Build complete: {final_path.name}")
     print(f"  Size: {final_path.stat().st_size / 1024 / 1024:.1f} MB")
 
     return final_path
@@ -82,7 +82,7 @@ def main():
     try:
         build_windows(args.version, args.output)
     except Exception as e:
-        print(f"\n✗ Build failed: {e}", file=sys.stderr)
+        print(f"\n[ERROR] Build failed: {e}", file=sys.stderr)
         return 1
 
     return 0
