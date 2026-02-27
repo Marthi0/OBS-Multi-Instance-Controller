@@ -234,19 +234,20 @@ def create_archive(source_dir: Path, output_path: Path, archive_format: str = "z
         return Path(f"{base_name}.{fmt}")
 
 
-def get_artifact_name(version: str, extension: str = "") -> str:
+def get_artifact_name(version: str, extension: str = "", arch: str = "") -> str:
     """Get standard artifact naming.
 
     Args:
         version: Version string
         extension: File extension (e.g., .exe, .zip)
+        arch: Optional architecture override (e.g., "x86_64", "arm64")
 
     Returns:
         str: Artifact name (e.g., obs-multi-instance-controller-0.1.0-windows-x86_64.exe)
     """
     platform_slug = get_platform_slug()
-    arch = get_architecture()
-    name = f"obs-multi-instance-controller-{version}-{platform_slug}-{arch}"
+    final_arch = arch if arch else get_architecture()
+    name = f"obs-multi-instance-controller-{version}-{platform_slug}-{final_arch}"
 
     if extension and not extension.startswith("."):
         extension = f".{extension}"

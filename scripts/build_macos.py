@@ -17,21 +17,25 @@ from build import (
 )
 
 
-def build_macos(version: str, output_dir: Path) -> Path:
+def build_macos(version: str, output_dir: Path, arch: str = "") -> Path:
     """Build for macOS (current architecture).
 
     Args:
         version: Version string (e.g., "0.1.0")
         output_dir: Output directory for dist/
+        arch: Optional architecture override (e.g., "x86_64", "arm64")
 
     Returns:
         Path: Path to built application
     """
     project_root = get_project_root()
     spec_file = project_root / "scripts" / "pyinstaller.spec"
-    arch = get_architecture()
+    detected_arch = get_architecture()
 
-    print_build_info(version, "macOS", arch)
+    # Use provided arch or auto-detect
+    final_arch = arch if arch else detected_arch
+
+    print_build_info(version, "macOS", final_arch)
 
     # Ensure dependencies
     print("Installing dependencies...")
@@ -55,7 +59,7 @@ def build_macos(version: str, output_dir: Path) -> Path:
 
     # Create zip archive for distribution
     print("Creating distribution archive...")
-    artifact_name = get_artifact_name(version, "")
+    artifact_name = get_artifact_name(version, "", final_arch)
     archive_path = create_archive(
         source_dir=app_path.parent,
         output_path=output_dir / artifact_name,
@@ -88,11 +92,17 @@ def main():
         default=Path("dist"),
         help="Output directory (default: dist/)",
     )
+    parser.add_argument(
+        "--arch",
+        type=str,
+        default=None,
+        help="Architecture override (e.g., x86_64, arm64)",
+    )
 
     args = parser.parse_args()
 
     try:
-        build_macos(args.version, args.output)
+        build_macos(args.version, args.output, args.arch)
     except Exception as e:
         print(f"\n[ERROR] Build failed: {e}", file=sys.stderr)
         return 1
