@@ -215,8 +215,8 @@ def create_archive(source_dir: Path, output_path: Path, archive_format: str = "z
     format_map = {
         "zip": "zip",
         "tar": "tar",
-        "tar.gz": "tar.gz",
-        "tgz": "tar.gz",
+        "tar.gz": "gztar",
+        "tgz": "gztar",
     }
 
     fmt = format_map.get(archive_format, archive_format)
@@ -228,7 +228,7 @@ def create_archive(source_dir: Path, output_path: Path, archive_format: str = "z
     shutil.make_archive(base_name, fmt, source_dir)
 
     # Return actual created file path
-    if fmt == "tar.gz":
+    if fmt == "gztar":
         return Path(f"{base_name}.tar.gz")
     else:
         return Path(f"{base_name}.{fmt}")
