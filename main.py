@@ -7,7 +7,7 @@ from pathlib import Path
 from app.config.loader import ConfigLoader
 from app.utils import setup_logging
 from app.ui import MainWindow
-from PySide6.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication
 
 logger = logging.getLogger(__name__)
 

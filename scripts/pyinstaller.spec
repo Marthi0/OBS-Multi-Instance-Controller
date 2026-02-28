@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""PyInstaller spec file for OBS Multi Instance Controller across all platforms."""
+"""PyInstaller spec file for OBS Multi Instance Controller - PyQt5/Qt5 Edition."""
 
 import sys
 import os
@@ -10,8 +10,9 @@ block_cipher = None
 # Project root
 project_root = Path.cwd()
 
-# macOS compatibility settings for Catalina (10.15)
-macos_deployment_target = os.environ.get("MACOSX_DEPLOYMENT_TARGET", "10.15")
+# macOS compatibility settings
+# For Catalina and later support, set minimum deployment target
+macos_deployment_target = os.environ.get("MACOSX_DEPLOYMENT_TARGET", "10.13")
 
 a = Analysis(
     [str(project_root / "main.py")],
@@ -19,18 +20,14 @@ a = Analysis(
     binaries=[],
     datas=[],
     hiddenimports=[
-        # PySide6 core modules
-        "PySide6.QtCore",
-        "PySide6.QtGui",
-        "PySide6.QtWidgets",
-        "PySide6.QtCore.QCoreApplication",
-        "PySide6.QtGui.QGuiApplication",
-        "PySide6.QtWidgets.QApplication",
-        # PySide6 plugins (required for Catalina)
-        "PySide6.plugins.platforms",
-        "PySide6.plugins.imageformats",
-        "PySide6.plugins.iconengines",
-        "PySide6.plugins.platforms.qcocoa",
+        # PyQt5 core modules (Qt 5)
+        "PyQt5.QtCore",
+        "PyQt5.QtGui",
+        "PyQt5.QtWidgets",
+        # PyQt5 platform plugins (required for GUI)
+        "PyQt5.plugins.platforms",
+        "PyQt5.plugins.imageformats",
+        "PyQt5.plugins.iconengines",
         # obsws-python
         "obsws_python",
         "obsws_python.client",
@@ -49,7 +46,7 @@ a = Analysis(
         # Encoding support
         "encodings.utf_8",
     ],
-    hookspath=[str(project_root / "scripts")],  # Use custom hooks
+    hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludedimports=[],
@@ -72,7 +69,7 @@ exe = EXE(
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
-    upx=False,  # Disable UPX for macOS compatibility with Catalina
+    upx=False,
     upx_exclude=[],
     runtime_tmpdir=None,
     console=False,  # GUI application, no console window
@@ -92,6 +89,8 @@ if sys.platform == "darwin":
             "NSPrincipalClass": "NSApplication",
             "NSHighResolutionCapable": "True",
             "NSRequiresIPhoneOS": False,
-            "LSMinimumSystemVersion": "10.15.0",  # Catalina minimum
+            "LSMinimumSystemVersion": "10.13.0",  # High Sierra minimum for PyQt5
         },
     )
+
+

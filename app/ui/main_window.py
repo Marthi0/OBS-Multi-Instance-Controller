@@ -1,12 +1,12 @@
 """Main application window."""
 import logging
 from typing import List, Dict
-from PySide6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QMessageBox, QStatusBar
 )
-from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QFont
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QFont
 from app.obs.controller import OBSController
 from app.system.obs_launcher import OBSLauncher
 from app.system.watchdog import OBSWatchdog

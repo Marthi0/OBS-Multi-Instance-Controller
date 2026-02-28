@@ -1,10 +1,10 @@
-# Core UI Framework (6.8.0+ supports Python 3.11 and macOS 10.15 Catalina)
-PySide6>=6.8.0
-# OBS WebSocket client (compatible with Python 3.11 and Catalina)
+# Core UI Framework (5.15.x supports Python 3.11 and all major OS platforms including Catalina)
+PyQt5>=5.15.0
+# OBS WebSocket client (compatible with Python 3.11)
 obsws-python>=1.6.0
-# Data validation (2.8.0+ supports Python 3.11 and Catalina)
+# Data validation (2.8.0+ supports Python 3.11)
 Pydantic>=2.8.0
-# System utilities (6.0.0+ supports Python 3.11 and macOS 10.15)
+# System utilities (6.0.0+ supports Python 3.11)
 psutil>=6.0.0
 # Testing framework
 pytest>=8.0.0

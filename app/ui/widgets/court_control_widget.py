@@ -2,12 +2,12 @@
 import logging
 import time
 from typing import Optional, Callable
-from PySide6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel,
     QFrame, QSizePolicy
 )
-from PySide6.QtCore import Qt, Signal, QTimer
-from PySide6.QtGui import QColor, QFont
+from PyQt5.QtCore import Qt, pyqtSignal, QTimer
+from PyQt5.QtGui import QColor, QFont
 from app.obs.controller import OBSController
 from app.system.obs_launcher import OBSLauncher
 from app.system.watchdog import OBSWatchdog
@@ -19,8 +19,8 @@ class CourtControlWidget(QWidget):
     """Widget for controlling a single court's OBS instance."""
 
     # Signals
-    status_changed = Signal(str)  # Emits status string
-    error_occurred = Signal(str)  # Emits error message
+    status_changed = pyqtSignal(str)  # Emits status string
+    error_occurred = pyqtSignal(str)  # Emits error message
 
     def __init__(self, court_name: str, obs_controller: OBSController, obs_launcher: Optional[OBSLauncher] = None, watchdog: Optional[OBSWatchdog] = None):
         """Initialize court control widget.

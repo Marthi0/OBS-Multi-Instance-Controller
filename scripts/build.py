@@ -149,17 +149,17 @@ def ensure_dependencies_installed() -> None:
         except subprocess.CalledProcessError as e:
             raise RuntimeError(f"Failed to install {package}: {e}")
 
-    # On macOS, ensure proper wheel format for Catalina
+    # On macOS, ensure proper wheel format
     if sys.platform == "darwin":
         try:
-            # Reinstall PySide6 to ensure ARM64/x86_64 wheels match system
+            # Reinstall PyQt5 to ensure ARM64/x86_64 wheels match system
             subprocess.run(
-                [sys.executable, "-m", "pip", "install", "--force-reinstall", "-q", "PySide6>=6.8.0"],
+                [sys.executable, "-m", "pip", "install", "--force-reinstall", "-q", "PyQt5>=5.15.0"],
                 check=True
             )
         except subprocess.CalledProcessError as e:
             # Don't fail if this fails, but warn
-            print(f"[WARNING] Could not force reinstall PySide6: {e}", file=sys.stderr)
+            print(f"[WARNING] Could not force reinstall PyQt5: {e}", file=sys.stderr)
 
 
 def run_pyinstaller(
