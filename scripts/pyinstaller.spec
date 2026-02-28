@@ -2,12 +2,16 @@
 """PyInstaller spec file for OBS Multi Instance Controller across all platforms."""
 
 import sys
+import os
 from pathlib import Path
 
 block_cipher = None
 
 # Project root
 project_root = Path.cwd()
+
+# macOS compatibility settings for Catalina (10.15)
+macos_deployment_target = os.environ.get("MACOSX_DEPLOYMENT_TARGET", "10.15")
 
 a = Analysis(
     [str(project_root / "main.py")],
@@ -76,10 +80,11 @@ if sys.platform == "darwin":
         exe,
         name="OBS Multi Instance Controller.app",
         icon=None,
-        bundle_identifier=None,
+        bundle_identifier="com.obscontroller.multiinstance",
         info_plist={
             "NSPrincipalClass": "NSApplication",
             "NSHighResolutionCapable": "True",
             "NSRequiresIPhoneOS": False,
+            "LSMinimumSystemVersion": "10.15.0",  # Catalina minimum
         },
     )

@@ -27,9 +27,9 @@ jobs:
             python-version: '3.11'
             script: scripts/build_macos.py --arch arm64
 
-          - os: macos-14
+          - os: macos-15-intel
             python-version: '3.11'
-            script: scripts/build_macos.py --arch x86_64
+            script: scripts/build_macos.py --arch x86_64 --catalina-compat
 
           - os: ubuntu-latest
             python-version: '3.11'
@@ -68,6 +68,8 @@ jobs:
       - name: Build ${{ matrix.os }}
         run: python ${{ matrix.script }} --version ${{ steps.version.outputs.version }} --output dist
         timeout-minutes: 30
+        env:
+          MACOSX_DEPLOYMENT_TARGET: "10.15"
 
       - name: List artifacts
         run: |

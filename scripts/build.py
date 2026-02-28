@@ -155,6 +155,7 @@ def run_pyinstaller(
     output_dir: Path,
     version: str,
     onefile: bool = True,
+    catalina_compat: bool = False,
 ) -> Path:
     """Run PyInstaller with given spec file.
 
@@ -163,6 +164,7 @@ def run_pyinstaller(
         output_dir: Output directory for dist/
         version: Version string for naming
         onefile: Build as single file
+        catalina_compat: Force Catalina (10.15) compatibility
 
     Returns:
         Path: Path to built executable/bundle
@@ -171,6 +173,11 @@ def run_pyinstaller(
         RuntimeError: If PyInstaller fails
     """
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Set Catalina compatibility if requested
+    env = os.environ.copy()
+    if catalina_compat and sys.platform == "darwin":
+        env["MACOSX_DEPLOYMENT_TARGET"] = "10.15"
 
     cmd = [
         sys.executable,
@@ -183,7 +190,7 @@ def run_pyinstaller(
     cmd.append(str(spec_file))
 
     try:
-        subprocess.run(cmd, check=True, cwd=get_project_root())
+        subprocess.run(cmd, check=True, cwd=get_project_root(), env=env)
     except subprocess.CalledProcessError as e:
         raise RuntimeError(f"PyInstaller build failed: {e}")
 

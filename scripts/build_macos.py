@@ -17,13 +17,14 @@ from build import (
 )
 
 
-def build_macos(version: str, output_dir: Path, arch: str = "") -> Path:
+def build_macos(version: str, output_dir: Path, arch: str = "", catalina_compat: bool = False) -> Path:
     """Build for macOS (current architecture).
 
     Args:
         version: Version string (e.g., "0.1.0")
         output_dir: Output directory for dist/
         arch: Optional architecture override (e.g., "x86_64", "arm64")
+        catalina_compat: Force Catalina (10.15) compatibility
 
     Returns:
         Path: Path to built application
@@ -48,6 +49,7 @@ def build_macos(version: str, output_dir: Path, arch: str = "") -> Path:
         output_dir=output_dir,
         version=version,
         onefile=False,  # Create app bundle, not one-file
+        catalina_compat=catalina_compat,
     )
 
     # Find app bundle
@@ -98,11 +100,16 @@ def main():
         default=None,
         help="Architecture override (e.g., x86_64, arm64)",
     )
+    parser.add_argument(
+        "--catalina-compat",
+        action="store_true",
+        help="Force Catalina (10.15) compatibility",
+    )
 
     args = parser.parse_args()
 
     try:
-        build_macos(args.version, args.output, args.arch)
+        build_macos(args.version, args.output, args.arch, args.catalina_compat)
     except Exception as e:
         print(f"\n[ERROR] Build failed: {e}", file=sys.stderr)
         return 1
