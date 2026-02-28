@@ -65,16 +65,52 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller>=6.0.0
 
+      - name: Verify system and Python (macOS only)
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          echo "=== System Information ==="
+          uname -a
+          echo ""
+          echo "=== Python Information ==="
+          python --version
+          python -c "import struct; print(f'Python architecture: {struct.calcsize(\"P\") * 8}-bit')"
+          python -c "import sysconfig; print(f'Config vars: {sysconfig.get_config_var(\"LDVERSION\")}')"
+          echo ""
+          echo "=== PySide6 Information ==="
+          python -c "import PySide6; print(f'PySide6 location: {PySide6.__file__}')"
+          python -c "from PySide6 import QtCore; print(f'QtCore location: {QtCore.__file__}')"
+          python -c "import shiboken6; print(f'Shiboken6 location: {shiboken6.__file__}')" || echo "Shiboken6 warning"
+
       - name: Build ${{ matrix.os }}
         run: python ${{ matrix.script }} --version ${{ steps.version.outputs.version }} --output dist
         timeout-minutes: 30
         env:
           MACOSX_DEPLOYMENT_TARGET: "10.15"
 
+      - name: Verify build artifacts (macOS only)
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          echo "=== Checking for Shiboken in app bundle ==="
+          APP_BUNDLE=$(find dist -name "*.app" -type d | head -1)
+          if [ -n "$APP_BUNDLE" ]; then
+            echo "Found app bundle: $APP_BUNDLE"
+            echo ""
+            echo "=== PySide6 contents ==="
+            find "$APP_BUNDLE" -name "*shiboken*" -o -name "*libQt*" | head -20
+            echo ""
+            echo "=== Checking for missing dylib dependencies ==="
+            find "$APP_BUNDLE/Contents/MacOS" -type f -executable | while read binary; do
+              echo "Checking: $binary"
+              otool -L "$binary" 2>/dev/null | grep -E "(shiboken|Qt)" || echo "  (no Qt/Shiboken deps)"
+            done
+          else
+            echo "ERROR: No .app bundle found!"
+          fi
+
       - name: List artifacts
         run: |
           echo "Build artifacts:"
-          ls -lha dist/
+          ls -lha dist/ 2>/dev/null || echo "  (no artifacts)"
         shell: bash
 
       - name: Upload artifacts

@@ -19,13 +19,18 @@ a = Analysis(
     binaries=[],
     datas=[],
     hiddenimports=[
-        # PySide6 core
+        # PySide6 core modules
         "PySide6.QtCore",
         "PySide6.QtGui",
         "PySide6.QtWidgets",
-        # PySide6 platform plugins and resources
         "PySide6.QtCore.QCoreApplication",
         "PySide6.QtGui.QGuiApplication",
+        "PySide6.QtWidgets.QApplication",
+        # PySide6 plugins (required for Catalina)
+        "PySide6.plugins.platforms",
+        "PySide6.plugins.imageformats",
+        "PySide6.plugins.iconengines",
+        "PySide6.plugins.platforms.qcocoa",
         # obsws-python
         "obsws_python",
         "obsws_python.client",
@@ -41,8 +46,10 @@ a = Analysis(
         "pathlib",
         "threading",
         "time",
+        # Encoding support
+        "encodings.utf_8",
     ],
-    hookspath=[],
+    hookspath=[str(project_root / "scripts")],  # Use custom hooks
     hooksconfig={},
     runtime_hooks=[],
     excludedimports=[],
@@ -65,7 +72,7 @@ exe = EXE(
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
-    upx=True,
+    upx=False,  # Disable UPX for macOS compatibility with Catalina
     upx_exclude=[],
     runtime_tmpdir=None,
     console=False,  # GUI application, no console window

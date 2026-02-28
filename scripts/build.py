@@ -149,6 +149,18 @@ def ensure_dependencies_installed() -> None:
         except subprocess.CalledProcessError as e:
             raise RuntimeError(f"Failed to install {package}: {e}")
 
+    # On macOS, ensure proper wheel format for Catalina
+    if sys.platform == "darwin":
+        try:
+            # Reinstall PySide6 to ensure ARM64/x86_64 wheels match system
+            subprocess.run(
+                [sys.executable, "-m", "pip", "install", "--force-reinstall", "-q", "PySide6>=6.8.0"],
+                check=True
+            )
+        except subprocess.CalledProcessError as e:
+            # Don't fail if this fails, but warn
+            print(f"[WARNING] Could not force reinstall PySide6: {e}", file=sys.stderr)
+
 
 def run_pyinstaller(
     spec_file: Path,
