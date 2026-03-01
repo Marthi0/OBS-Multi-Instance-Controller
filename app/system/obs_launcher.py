@@ -84,9 +84,8 @@ class OBSLauncher:
         # Add profile flag
         cmd.extend(["--profile", self.profile])
 
-        # Multi-instance mode for Windows
-        if self.system == "Windows":
-            cmd.append("--multi")
+        # Multi-instance mode
+        cmd.append("--multi")
 
         # Configure WebSocket via command-line (OBS 32.x+)
         cmd.extend(["--websocket_port", str(self.websocket_port)])
