@@ -12,7 +12,7 @@ project_root = Path.cwd()
 
 # macOS compatibility settings
 # For Catalina and later support, set minimum deployment target
-macos_deployment_target = os.environ.get("MACOSX_DEPLOYMENT_TARGET", "10.13")
+macos_deployment_target = os.environ.get("MACOSX_DEPLOYMENT_TARGET", "10.15")
 
 a = Analysis(
     [str(project_root / "main.py")],
@@ -89,7 +89,7 @@ if sys.platform == "darwin":
             "NSPrincipalClass": "NSApplication",
             "NSHighResolutionCapable": "True",
             "NSRequiresIPhoneOS": False,
-            "LSMinimumSystemVersion": "10.13.0",  # High Sierra minimum for PyQt5
+            "LSMinimumSystemVersion": "10.15.0",  # High Sierra minimum for PyQt5
         },
     )
 
