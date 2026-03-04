@@ -155,6 +155,11 @@ class MainWindow(QMainWindow):
         """
         logger.info(f"OBS reconnected for {court_name}")
         self.statusBar().showMessage(f"{court_name} OBS reconnected successfully")
+        
+        # Set default scene if configured
+        controller = self.obs_controllers.get(court_name)
+        if controller and not controller.set_default_scene():
+            logger.warning(f"Failed to set default scene for {court_name} after reconnection")
 
     def closeEvent(self, event):
         """Handle application close event."""

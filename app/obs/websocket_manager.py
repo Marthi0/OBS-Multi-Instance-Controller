@@ -209,3 +209,24 @@ class WebSocketManager:
             "streaming": streaming,
             "recording": recording
         }
+
+    def set_current_scene(self, scene_name: str) -> bool:
+        """Set the current scene in OBS.
+
+        Args:
+            scene_name: Name of the scene to switch to
+
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        if not self.is_connected():
+            logger.error("Not connected to OBS")
+            return False
+
+        try:
+            self.req_client.set_current_program_scene(scene_name)
+            logger.info(f"Switched to scene '{scene_name}' on {self.host}:{self.port}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to set current scene to '{scene_name}': {e}")
+            return False

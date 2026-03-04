@@ -171,6 +171,9 @@ class CourtControlWidget(QWidget):
         # Now try to connect
         if self.obs_controller.connect():
             self.status_changed.emit(f"{self.court_name}: OBS connected")
+            # Set default scene if configured
+            if not self.obs_controller.set_default_scene():
+                logger.warning(f"Failed to set default scene for {self.court_name}")
         else:
             self.error_occurred.emit(f"{self.court_name}: Failed to connect to OBS")
 

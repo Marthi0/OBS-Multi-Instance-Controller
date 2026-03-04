@@ -44,10 +44,4 @@ def setup_logging(
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    # Console handler
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(log_level)
-    console_handler.setFormatter(formatter)
-    logger.addHandler(console_handler)
-
     logger.info("Logging initialized")

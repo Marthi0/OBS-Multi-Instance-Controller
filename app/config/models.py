@@ -11,6 +11,7 @@ class CourtConfig(BaseModel):
     websocket_port: int = Field(..., description="OBS WebSocket port")
     websocket_password: str = Field(..., description="OBS WebSocket password")
     profile_name: str = Field(..., description="OBS profile name")
+    default_scene: str = Field("", description="Default scene to switch to on startup")
 
     @field_validator("obs_port", "websocket_port")
     @classmethod

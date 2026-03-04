@@ -62,3 +62,15 @@ class OBSController:
     def get_status(self) -> Dict[str, Any]:
         """Get complete status."""
         return self.ws_manager.get_status()
+
+    def set_default_scene(self) -> bool:
+        """Set the default scene if configured.
+
+        Returns:
+            bool: True if scene was set or no default scene configured, False on error
+        """
+        if not self.court_config.default_scene:
+            logger.debug(f"No default scene configured for court {self.court_config.name}")
+            return True
+
+        return self.ws_manager.set_current_scene(self.court_config.default_scene)

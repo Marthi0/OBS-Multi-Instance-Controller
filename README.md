@@ -107,14 +107,16 @@ Create a `config.json` file in the project root:
       "obs_port": 4444,
       "websocket_port": 4444,
       "websocket_password": "Puchaux",
-      "profile_name": "Puchaux"
+      "profile_name": "Puchaux",
+      "default_scene": "Scene 1"
     },
     {
       "name": "Court n°2 Bruniera",
       "obs_port": 4445,
       "websocket_port": 4445,
       "websocket_password": "Bruniera",
-      "profile_name": "Bruniera"
+      "profile_name": "Bruniera",
+      "default_scene": "Main Scene"
     }
   ],
   "watchdog_check_interval": 5,
@@ -133,6 +135,7 @@ Create a `config.json` file in the project root:
 | `websocket_port` | Port for OBS WebSocket server |
 | `websocket_password` | Password for WebSocket authentication |
 | `profile_name` | OBS profile name to use |
+| `default_scene` | Default scene to switch to on OBS startup (optional) |
 | `watchdog_check_interval` | Seconds between health checks (default: 5) |
 | `watchdog_restart_delay` | Seconds to wait before attempting recovery (default: 3) |
 
