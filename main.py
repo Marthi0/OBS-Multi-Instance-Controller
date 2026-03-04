@@ -29,7 +29,6 @@ def main():
             "Please create a config.json file using the provided template."
         )
         logger.error(error_msg)
-        print(error_msg, file=sys.stderr)
         return 1
 
     try:
@@ -40,7 +39,6 @@ def main():
     except Exception as e:
         error_msg = f"Failed to load configuration: {e}"
         logger.error(error_msg)
-        print(error_msg, file=sys.stderr)
         return 1
 
     # Create and show main window
